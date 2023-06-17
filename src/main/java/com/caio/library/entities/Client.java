@@ -16,9 +16,9 @@ public class Client implements Serializable {
     public Client() {
     }
 
-    public Client(String name, String cpf) {
-        this.name = name;
+    public Client(String cpf, String name) {
         this.cpf = cpf;
+        this.name = name;
     }
 
     public String getName() {
@@ -49,5 +49,4 @@ public class Client implements Serializable {
     public int hashCode() {
         return Objects.hash(cpf);
     }
-
 }

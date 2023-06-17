@@ -1,5 +1,6 @@
 package com.caio.library.services;
 
+import com.caio.library.dto.ClientDTO;
 import com.caio.library.entities.Client;
 import com.caio.library.repositories.ClientRepository;
 import com.sun.jdi.ObjectCollectedException;
@@ -8,7 +9,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 
 @Service
 public class ClientService {
@@ -20,8 +20,16 @@ public class ClientService {
         return repository.findAll();
     }
 
-    public Client findByCpf(String cpf) {
-        Optional<Client> obj = repository.findById(cpf);
+    public Client findById(String id) {
+        Optional<Client> obj = repository.findById(id);
         return obj.orElseThrow(() -> new ObjectCollectedException("Client not found"));
+    }
+
+    public Client insert(Client obj) {
+        return repository.insert(obj);
+    }
+
+    public Client fromDTO(ClientDTO clientDTO) {
+        return new Client(clientDTO.getCpf(), clientDTO.getName());
     }
 }
