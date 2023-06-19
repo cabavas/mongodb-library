@@ -5,6 +5,7 @@ import org.springframework.data.mongodb.core.mapping.MongoId;
 
 import java.io.Serializable;
 import java.time.Instant;
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Objects;
@@ -13,8 +14,8 @@ import java.util.Set;
 public class Order implements Serializable {
     @MongoId(FieldType.INT64)
     private Integer id;
-    private Date initialDate;
-    private Date dateOfReturn;
+    private LocalDateTime initialDate;
+    private LocalDateTime dateOfReturn;
     private Client client;
     private Integer amountOfBooks;
     private Set<Book> books = new HashSet<>();
@@ -22,9 +23,9 @@ public class Order implements Serializable {
     public Order() {
     }
 
-    public Order(int id, Date date, Date dateOfReturn, Client client, Integer amountOfBooks) {
+    public Order(int id, LocalDateTime date, LocalDateTime dateOfReturn, Client client, Integer amountOfBooks) {
         this.id = id;
-        this.initialDate = new Date(String.valueOf(Instant.now()));
+        this.initialDate = LocalDateTime.now();
         this.dateOfReturn = dateOfReturn;
         this.client = client;
         this.amountOfBooks = amountOfBooks;
@@ -38,19 +39,19 @@ public class Order implements Serializable {
         this.id = id;
     }
 
-    public Date getInitialDate() {
+    public LocalDateTime getInitialDate() {
         return initialDate;
     }
 
-    public void setInitialDate(Date initialDate) {
+    public void setInitialDate(LocalDateTime initialDate) {
         this.initialDate = initialDate;
     }
 
-    public Date getDateOfReturn() {
+    public LocalDateTime getDateOfReturn() {
         return dateOfReturn;
     }
 
-    public void setDateOfReturn(Date dateOfReturn) {
+    public void setDateOfReturn(LocalDateTime dateOfReturn) {
         this.dateOfReturn = dateOfReturn;
     }
 

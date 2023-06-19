@@ -6,6 +6,9 @@ import com.caio.library.repositories.ClientRepository;
 import com.sun.jdi.ObjectCollectedException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
 import java.util.Optional;
@@ -27,6 +30,23 @@ public class ClientService {
 
     public Client insert(Client obj) {
         return repository.insert(obj);
+    }
+
+    public void delete(String id) {
+        findById(id);
+        repository.deleteById(id);
+    }
+
+
+    public Client update(Client obj) {
+        Client newObj = findById(obj.getId());
+        updateData(newObj, obj);
+        return repository.save(newObj);
+    }
+
+    public void updateData(Client newObj, Client obj) {
+        newObj.setCpf(obj.getCpf());
+        newObj.setName(obj.getName());
     }
 
     public Client fromDTO(ClientDTO obj) {

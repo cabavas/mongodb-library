@@ -5,14 +5,15 @@ import com.caio.library.entities.Client;
 import com.caio.library.entities.Order;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
 public class OrderDTO implements Serializable {
     private Integer id;
-    private Date initialDate;
-    private Date dateOfReturn;
+    private LocalDateTime initialDate;
+    private LocalDateTime dateOfReturn;
     private Client client;
     private Integer amountOfBooks;
     private Set<Book> books = new HashSet<>();
@@ -37,19 +38,19 @@ public class OrderDTO implements Serializable {
         this.id = id;
     }
 
-    public Date getInitialDate() {
+    public LocalDateTime getInitialDate() {
         return initialDate;
     }
 
-    public void setInitialDate(Date initialDate) {
+    public void setInitialDate(LocalDateTime initialDate) {
         this.initialDate = initialDate;
     }
 
-    public Date getDateOfReturn() {
+    public LocalDateTime getDateOfReturn() {
         return dateOfReturn;
     }
 
-    public void setDateOfReturn(Date dateOfReturn) {
+    public void setDateOfReturn(LocalDateTime dateOfReturn) {
         this.dateOfReturn = dateOfReturn;
     }
 
