@@ -5,6 +5,7 @@ import com.caio.library.entities.Client;
 import java.io.Serializable;
 
 public class ClientDTO implements Serializable {
+    private String id;
 
     private String cpf;
     private String name;
@@ -13,8 +14,17 @@ public class ClientDTO implements Serializable {
     }
 
     public ClientDTO(Client obj) {
+        id = obj.getId();
         cpf = obj.getCpf();
         name = obj.getName();
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getCpf() {
@@ -29,7 +39,7 @@ public class ClientDTO implements Serializable {
         return name;
     }
 
-    public void setName(String title) {
+    public void setName(String name) {
         this.name = name;
     }
 

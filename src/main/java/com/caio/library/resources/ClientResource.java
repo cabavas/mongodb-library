@@ -1,6 +1,11 @@
 package com.caio.library.resources;
 
 import com.caio.library.dto.ClientDTO;
+
+import java.net.URI;
+import java.util.List;
+import java.util.stream.Collectors;
+
 import com.caio.library.entities.Client;
 import com.caio.library.services.ClientService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,9 +13,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import java.net.URI;
-import java.util.List;
-import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping(value = "/clients")
@@ -26,7 +28,7 @@ public class ClientResource {
         return ResponseEntity.ok().body(clientsDTO);
     }
 
-    @GetMapping(value = "/{cpf}")
+    @GetMapping(value = "/{id}")
     public ResponseEntity<ClientDTO> findById(@PathVariable String id) {
         Client obj = service.findById(id);
         return ResponseEntity.ok().body(new ClientDTO(obj));
@@ -36,7 +38,7 @@ public class ClientResource {
     public ResponseEntity<Void> insert(@RequestBody ClientDTO clientDTO) {
         Client obj = service.fromDTO(clientDTO);
         obj = service.insert(obj);
-        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getCpf()).toUri();
+        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getId()).toUri();
         return ResponseEntity.created(uri).build();
     }
 }

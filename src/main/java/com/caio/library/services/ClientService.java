@@ -29,7 +29,7 @@ public class ClientService {
         return repository.insert(obj);
     }
 
-    public Client fromDTO(ClientDTO clientDTO) {
-        return new Client(clientDTO.getCpf(), clientDTO.getName());
+    public Client fromDTO(ClientDTO obj) {
+        return new Client(obj.getId(), obj.getCpf(), obj.getName());
     }
 }
