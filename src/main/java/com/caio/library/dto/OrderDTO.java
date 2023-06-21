@@ -11,7 +11,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class OrderDTO implements Serializable {
-    private Integer id;
+    private String id;
     private LocalDateTime initialDate;
     private LocalDateTime dateOfReturn;
     private Client client;
@@ -30,11 +30,11 @@ public class OrderDTO implements Serializable {
         this.books = obj.getBooks();
     }
 
-    public Integer getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(String id) {
         this.id = id;
     }
 

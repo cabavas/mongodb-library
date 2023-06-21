@@ -1,7 +1,7 @@
 package com.caio.library.entities;
 
-import org.springframework.data.mongodb.core.mapping.FieldType;
-import org.springframework.data.mongodb.core.mapping.MongoId;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.*;
 
 import java.io.Serializable;
 import java.time.Instant;
@@ -11,31 +11,35 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+@Document(collection = "orders")
 public class Order implements Serializable {
-    @MongoId(FieldType.INT64)
-    private Integer id;
+    @Id
+    private String id;
     private LocalDateTime initialDate;
     private LocalDateTime dateOfReturn;
+    @DocumentReference
     private Client client;
     private Integer amountOfBooks;
+    @DocumentReference
     private Set<Book> books = new HashSet<>();
 
     public Order() {
     }
 
-    public Order(int id, LocalDateTime date, LocalDateTime dateOfReturn, Client client, Integer amountOfBooks) {
+    public Order(String id, LocalDateTime dateOfReturn, Client client, Integer amountOfBooks, Set<Book> books) {
         this.id = id;
         this.initialDate = LocalDateTime.now();
         this.dateOfReturn = dateOfReturn;
         this.client = client;
         this.amountOfBooks = amountOfBooks;
+        this.books = books;
     }
 
-    public Integer getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(String id) {
         this.id = id;
     }
 
